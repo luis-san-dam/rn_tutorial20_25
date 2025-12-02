@@ -116,7 +116,7 @@ export default function EditorActor({actorSeleccionado, accionCrearActor, accion
                 </Pressable>
                 <Pressable
                     style={styles.boton}
-                    onPress={() => accionModificarActor(id, {nombre, biografia, urlFoto, fechaNacimiento, activo, peliculas})}
+                    onPress={() => accionModificarActor(actorSeleccionado.id, {urlFoto, nombre, biografia, fechaNacimiento, activo, peliculas})}
                 >
                 <Text style={styles.textoBoton}>Modificar</Text>
                 </Pressable>
@@ -126,7 +126,7 @@ export default function EditorActor({actorSeleccionado, accionCrearActor, accion
             actorSeleccionado === undefined && (
                 <Pressable
                     style={styles.boton}
-                    onPress={() => accionCrearActor({nombre, biografia, fechaNacimiento, activo, peliculas})}
+                    onPress={() => accionCrearActor({urlFoto, nombre, biografia, fechaNacimiento, activo, peliculas})}
                 >
                     <Text style={styles.textoBoton}>Crear</Text>
                 </Pressable>

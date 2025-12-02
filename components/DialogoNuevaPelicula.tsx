@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { Pelicula } from '../model/Tipos'
-import DialogContainer from 'react-native-dialog/lib/Container'
+import Dialog from 'react-native-dialog'
 
 type DialogoNuevaPeliculaProps = {
     dialogoVisible: boolean
@@ -19,7 +19,7 @@ export default function DialogoNuevaPelicula(
         }
 
   return (
-    <DialogContainer
+    <Dialog.Container
         visible={ dialogoVisible }
         onBackdropPress={ cerrarDialogo }
         onRequestClose={ cerrarDialogo }
@@ -29,7 +29,7 @@ export default function DialogoNuevaPelicula(
         <Dialog.Input label={"Título de la película"} value={titulo} onChangeText={setTitulo}/>
         <Dialog.Button label={"cancelar"} onPress={cerrarDialogo}/>
         <Dialog.Button label={"aceptar"} onPress={() => nuevaPelicula(titulo)}/>
-    </DialogContainer>
+    </Dialog.Container>
   )
 }
 
