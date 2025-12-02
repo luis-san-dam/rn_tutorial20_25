@@ -5,6 +5,7 @@ import VisorPelicula from './VisorPelicula'
 import { Image } from 'expo-image'
 import dayjs from 'dayjs'
 import BouncyCheckbox from 'react-native-bouncy-checkbox'
+import DialogoNuevaPelicula from './DialogoNuevaPelicula'
 
 type EditorActorProps = {
     actorSeleccionado?:ActorCompleto
@@ -23,12 +24,20 @@ export default function EditorActor({actorSeleccionado, accionCrearActor, accion
     const [urlFoto, setUrlFoto] = useState(actorSeleccionado?.urlFoto ?? "")
     const [peliculas, setPeliculas] = useState(actorSeleccionado?.peliculas ?? [])
 
-    function accionBorrarPelicula(pelicula:Pelicula){
+    const [dialogoVisible, setDialogoVisible] = useState(false)
 
+    function accionBorrarPelicula(pelicula:Pelicula){
+        const nuevaListaPeliculas = peliculas.filter( p => p !== pelicula)
+        setPeliculas(nuevaListaPeliculas)
     }
 
     function accionNuevaPelicula(){
-        
+        setDialogoVisible(true)
+    }
+
+    function nuevaPelicula(pelicula:Pelicula){
+        const nuevaListaPeliculas = [...peliculas, pelicula]
+        setPeliculas(nuevaListaPeliculas)
     }
 
     function getEtiquetaPelicula(pelicula:Pelicula){
@@ -127,6 +136,11 @@ export default function EditorActor({actorSeleccionado, accionCrearActor, accion
             <Text style={styles.textoBoton}>Salir</Text>
         </Pressable>
       </View>
+      <DialogoNuevaPelicula 
+        dialogoVisible={dialogoVisible}
+        setDialogoVisible={setDialogoVisible}
+        nuevaPelicula={nuevaPelicula}
+      />
     </View>
   );
 }
